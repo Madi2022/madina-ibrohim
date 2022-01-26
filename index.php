@@ -10,7 +10,7 @@ Recipe for summer cup mocktail :
 
 */
 
-fucntion makeAjuice
+function makeAjuice
 (    float $cucumber,
      int $mint,  
      int $redberries, 
