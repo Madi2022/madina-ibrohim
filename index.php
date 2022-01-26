@@ -15,7 +15,7 @@ function makeAjuice
      int $mint,  
      int $redberries, 
      float $lemonade, 
-     float $ice;
+     float $ice,
      string $horoshieslova )
 {
     echo 
