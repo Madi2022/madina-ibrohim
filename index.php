@@ -41,6 +41,8 @@ put on fire and bring to a boil, as soon as the sugar dissolves, remove the spic
  }	 
 cookSangria(60, 1, 3, 2, 1, 1, 1, 100, 250, 12, 'Please enjoy!');	
 
+/*
+
 Recipe for summer cup mocktail :
 1 cm  cucumber (thick slice)
 1 sprig mint
