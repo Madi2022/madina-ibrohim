@@ -32,20 +32,21 @@ function validateMax($cocktail_name, $max_value)
     return "Max number of characters is OK!";
 }
 
+$cocktails =    [
+    "Mango_mule",
+    "Citrus_Fizz",
+    "Cucumber_Gimlet",
+    "Magic_Apple",
+    "Shirley_Ginger",
+    "Apple_Cier",
+    "Vantage_Point",
+    "Berry_Burlesque",
+    "Lavender_Lemonade",
+    "iced_tea"
+];
+
 function validateInArray($cocktail_name, $cocktails)
 {
-    $cocktails =    [
-        "Mango_mule",
-        "Citrus_Fizz",
-        "Cucumber_Gimlet",
-        "Magic_Apple",
-        "Shirley_Ginger",
-        "Apple_Cier",
-        "Vantage_Point",
-        "Berry_Burlesque",
-        "Lavender_Lemonade",
-        "iced_tea"
-    ];
 
     if (in_array($cocktail_name, $cocktails)) {
         return "Cocktail is on the menu";
