@@ -47,7 +47,6 @@
 
     function validateInArray($order_name, $cocktails)
     {
-
         if (in_array($order_name, $cocktails)) {
             return "Order is on the menu";
         }
