@@ -1,4 +1,4 @@
-<<?php
+<?php
 
     function validateString($order_name)
     {
