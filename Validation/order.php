@@ -18,9 +18,9 @@ function validateMin($command, $min_value)
 function validateMax($command, $max_value)
 {
     if (strlen($command) > $max_value) {
-        return "Too many characters in the command!"; 
+        return "Too many characters in the command!";
     }
-    return "Max numbers of characters are ok!"; 
+    return "Max numbers of characters are ok!";
 }
 
 function validateInList(string $command, array $command_list)
@@ -31,7 +31,7 @@ function validateInList(string $command, array $command_list)
     return "There is such command on the list!";
 }
 
-function outputCommand(string $command)
+function outputCommand(string $command, $min_value, $max_value)
 {
     $command_list = [
         "anchors aweigh!",
@@ -42,8 +42,8 @@ function outputCommand(string $command)
     ];
 
     $validate_type = validateType($command);
-    $validate_min  = validateMin($command);
-    $validate_max = validateMax($command);
+    $validate_min  = validateMin($command, $min_value);
+    $validate_max = validateMax($command, $max_value);
     $validate_in_list   = validateInList($command, $command_list);
     return "$validate_type $validate_min $validate_max $validate_in_list";
 } 
@@ -51,4 +51,4 @@ function outputCommand(string $command)
     $command = readline("Give your command, captain!: "); 
 	$min_value = 4;
 	$max_value = 18;
-    echo  outputCommand($command);  
+    echo outputCommand($command, $min_value, $max_value );  
