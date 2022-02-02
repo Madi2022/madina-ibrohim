@@ -65,7 +65,7 @@
     }
 
     $order_name = readline("Input your order (cocktail): ");
-    $Cup_quantity = readline("Input the amount of cups you want: ");
+    $cup_quantity = readline("Input the amount of cups you want: ");
     $min_value = 2;
     $max_value = 12;
     echo orderToBarmen($order_name, $cup_quantity, $min_value, $max_value, $cocktails);
