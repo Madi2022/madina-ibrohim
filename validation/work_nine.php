@@ -64,7 +64,7 @@ function index($order_name, $cup_quantity)
         "Lavender Lemonade",
         "Iced Tea"
     ];
-    $rules = 'string|int|min|max|inArray';
+    $rules = 'string|min: 10|max: 100|in:$array';
     $rules_values = '2|15';
     $messages = validateOrders($order_name, $rules, $cup_quantity, $cocktails, $rules_values);
 
