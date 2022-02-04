@@ -1,58 +1,55 @@
 <?php
 
-function validateString($order_name)
+function validateString($order_name, $min_value, $max_value, $cup_quantity, $cocktails)
 {
-    if (is_string($order_name)) {
-        return "200: Order's name type is correct. Your order is received.";
+    if (!is_string($order_name)) {
+        return "ERROR 404: Incorrect type of order. Reorder, please ";
     }
-    return "422: Order's name type is incorrect. Enter letters";
+    return "Correct type of order. Recieved ";
 }
-
-function validateInteger($cup_quantity)
+function validateInt($order_name, $min_value, $max_value, $cup_quantity, $cocktails)
 {
-    if (is_int($cup_quantity)) {
-        return "200: Cup quantity is correct. Your order is received.";
+    if (!is_int($cup_quantity)) {
+        return "ERROR 404: Incorrect type of order. Reorder, please. ";
     }
-    return "422: Quantity is incorrect. Enter a numeric value";
+    return "Correct type of order. Received ";
 }
-
-function validateMin($cup_quantity, $min_value)
+function validateMin($order_name, $min_value, $max_value, $cup_quantity, $cocktails)
 {
-    if (strlen($cup_quantity) <= $min_value) {
-        return "Very few characters in the order!";
+    if (strlen($order_name) <= $min_value) {
+        return "Not enough characters in the order. Reorder, please ";
     }
-    return "Min number of characters is OK!";
+    return "The amount of characters in the order is alright ";
 }
-
-function validateMax($cup_quantity, $max_value)
+function validateMax($order_name, $min_value, $max_value, $cup_quantity, $cocktails)
 {
-    if (strlen($cup_quantity) >= $max_value) {
-        return "Too many characters  in the order!";
+    if (strlen($order_name) >= $max_value) {
+        return "Too many characters in your order. Reorder, please  ";
     }
-    return "Max number of characters is OK!";
+    return " The amount of characters is alright ";
 }
-
-function validateInArray($order_name, $cocktails)
+function validateInArray($order_name, $min_value, $max_value, $fish_number, $cocktails)
 {
-    if (in_array($order_name, $cocktails)) {
-        return "Order is on the menu";
+    if (!in_array($order_name, $cocktails)) {
+        return "Your order doesn't exist in our menu. Reorder, please ";
     }
-    return "Order is not on the menu!";
+    return "Order received. ";
 }
-
-function validate($order_name, $rules, $cup_quantity, $cocktails, $rules_values)
+function validateOrders($order_name, $rules, $cup_quantity, $cocktails, $rules_values)
 {
-    $arr_rules = explode("|", $rules);
-    $mesages = [];
-    foreach ($arr_rules as $rule) {
-        array_push($messages, call_user_func_array("validate" . $rule, [
-            $order_name, 2, 20,
-            $cocktails, $cup_quantity
+    $messages = [];
+    $rules_in_array = explode('|', $rules);
+    $rules_values_in_array = explode('|', $rules_values);
+
+    foreach ($rules_in_array as $rule) {
+        array_push($messages, call_user_func_array("validate" . ucfirst($rule), [
+            $order_name, $rules_values_in_array[0],
+            $rules_values_in_array[1],
+            $order_name, $cocktails
         ]));
     }
     return $messages;
 }
-
 function index($order_name, $cup_quantity)
 {
     $cocktails = [
@@ -69,17 +66,12 @@ function index($order_name, $cup_quantity)
     ];
     $rules = 'string|int|min|max|inArray';
     $rules_values = '2|15';
-    $messages = validate($order_name, $rules, $cup_quantity, $cocktails, $rules_values);
+    $messages = validateOrders($order_name, $rules, $cup_quantity, $cocktails, $rules_values);
 
     return count($messages)
-        ? implode(',\n', $messages)
+        ? implode(',/n', $messages)
         : 'No validation messages';
 }
-
 $order_name = readline("Input your order, please: ");
-$cup_quantity = readline("Input the amount of cups you want, please");
-
+$cup_quantity = readline("Input the amount of cups you want, please: ");
 echo index($order_name, $cup_quantity);
-
-
-
